@@ -7,13 +7,14 @@ module.exports = {
     'eslint:recommended',
     'plugin:unicorn/recommended',
     'plugin:react/recommended',
+    'pligin: @typescript-eslint/recommended',
     'prettier',
   ],
   globals: {
     process: true,
   },
   overrides: [],
-  parser: '',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -40,5 +41,6 @@ module.exports = {
     'unicorn/filename-case': 'off',
     'unicorn/no-null': 'off',
     'unicorn/consistent-function-scoping': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
 }
