@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const isProduction = process.env.NODE_ENV === 'production'
 
 const styleLoaderHandler = isProduction
@@ -22,13 +23,18 @@ module.exports = {
     assetModuleFilename: 'assets/[name][hash][ext]',
   },
   resolve: {
+    plugins: [
+      new TsconfigPathsPlugin({
+        extensions: ['ts', 'tsx', '.js', '.jsx'],
+      }),
+    ],
     extensions: ['.js', '.jsx'],
-    alias: {
-      Components: path.resolve(__dirname, 'src/components/'),
-      Helpers: path.resolve(__dirname, 'src/helpers/'),
-      Hooks: path.resolve(__dirname, 'src/hooks/'),
-      Reducers: path.resolve(__dirname, 'src/reducers/'),
-    },
+    // alias: {
+    //   Components: path.resolve(__dirname, 'src/components/'),
+    //   Helpers: path.resolve(__dirname, 'src/helpers/'),
+    //   Hooks: path.resolve(__dirname, 'src/hooks/'),
+    //   Reducers: path.resolve(__dirname, 'src/reducers/'),
+    // },
   },
   devtool: isProduction ? 'source-map' : 'eval-source-map',
   devServer: {
