@@ -1,8 +1,8 @@
 {
-  "name": "incomes-and-expenses-book-app",
+  "name": "incomes-and-expenses-book-app-on-ts",
   "version": "1.0.0",
-  "description": "Incomes and expenses book app",
-  "main": "./src/index.js",
+  "description": "Incomes and expenses book app onTs",
+  "main": "./src/index.tsx",
   "scripts": {
     "prettier": "prettier --write ./src/**/*.js",
     "prettier:check": "prettier --check ./src/**/*.js",
@@ -50,6 +50,7 @@
     "sass": "1.77.6",
     "sass-loader": "^16.0.1",
     "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
     "webpack": "^5.94.0",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",

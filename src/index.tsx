@@ -1,4 +1,3 @@
-import React from 'react'
 import { createRoot } from 'react-dom/client'
 
 import App from './components/App'
@@ -29,7 +28,7 @@ i18n.use(languageDetector).use(initReactI18next).init({
   fallbackLng: 'ru',
 })
 
-const root = createRoot(document.querySelector('#app'))
+const root = createRoot(document.querySelector('#app') as HTMLElement)
 root.render(
   <ErrorBoundary fallback={<p>Ошибка 500. Обновите страницу</p>}>
     <Provider store={store}>
