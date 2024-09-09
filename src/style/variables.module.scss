@@ -1,0 +1,9 @@
+$bg-color: #66ba7c;
+$page-color: #eeecec;
+$box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.15);
+
+:export {
+  bgColor: $bg-color;
+  pageColor: $page-color;
+  boxShadow: $box-shadow;
+}

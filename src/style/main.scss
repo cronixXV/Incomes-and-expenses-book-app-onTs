@@ -1,0 +1,172 @@
+@import './theme/material/variables';
+@import '~bootstrap/scss/bootstrap';
+@import './theme/material/bootswatch';
+
+.navbar.bg-violet {
+  border-color: rgb(131, 60, 250);
+}
+
+.bg-violet {
+  background-color: rgb(131, 60, 250);
+}
+
+.bg-violet .nav-pills {
+  --bs-nav-pills-link-active-bg: rgb(38, 38, 38);
+}
+
+.bg-violet .dropdown-menu {
+  --bs-dropdown-bg: rgb(38, 38, 38);
+}
+
+.custom-delete-btn {
+  background-color: rgb(38, 38, 38);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 10px;
+}
+
+.custom-delete-btn:hover {
+  transform: scale(1.05);
+  background-color: rgb(58, 58, 58);
+}
+
+.custom-delete-btn:focus,
+.custom-delete-btn:active {
+  outline: none;
+  box-shadow: none;
+  background-color: rgb(38, 38, 38); 
+}
+
+.modal-footer .btn-secondary {
+  background-color: rgb(38, 38, 38);
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: rgb(58, 58, 58);
+}
+
+.modal-footer .btn-secondary:focus,
+.modal-footer .btn-secondary:active {
+  background-color: rgb(38, 38, 38); 
+}
+
+.custom-edit-btn {
+  background-color: rgb(131, 60, 250); 
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 10px;
+}
+
+.custom-edit-btn:hover {
+  transform: scale(1.05);
+  background-color: rgb(143, 86, 241); 
+}
+
+.custom-edit-btn:focus,
+.custom-edit-btn:active {
+  outline: none;
+  box-shadow: none;
+  background-color: rgb(131, 60, 250); 
+}
+
+.modal-footer .btn-primary {
+  background-color: rgb(131, 60, 250); 
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: rgb(131, 60, 250); 
+}
+
+.modal-footer .btn-primary:focus,
+.modal-footer .btn-primary:active {
+  background-color: rgb(131, 60, 250); 
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.button-container .custom-edit-btn {
+  margin: 10px 0 0 -17px;
+}
+.button-container .custom-delete-btn {
+  margin: 10px -17px 0 0;
+}
+
+.custom-link {
+  color: black;
+  text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease;
+  margin: 0 0 0 -8px;
+}
+
+.custom-link:hover {
+  transform: scale(1.05);
+  color: black; 
+}
+
+.custom-link:focus,
+.custom-link:active {
+  outline: none;
+  color: black;
+}
+
+.custom-link-reg-log {
+  color: rgb(131, 60, 250);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.custom-link-reg-log:hover {
+  transform: scale(1.15);
+  color: rgb(113, 40, 240);
+}
+
+.custom-link-reg-log:focus,
+.custom-link-reg-log:active {
+  outline: none;
+  color: rgb(131, 60, 250);
+}
+
+.custom-btn-main,
+.custom-stats-btn,
+.custom-add-btn
+{
+  background-color: rgb(38, 38, 38);
+}
+
+.custom-btn-main:hover,
+.custom-stats-btn:hover,
+.custom-add-btn:hover 
+{
+  background-color: rgb(58, 58, 58);
+}
+
+.custom-btn-main:focus,
+.custom-btn-main:active,
+.custom-stats-btn:focus,
+.custom-stats-btn:active,
+.custom-add-btn:focus,
+.custom-add-btn:active
+{
+  outline: none;
+  box-shadow: none;
+  background-color: rgb(38, 38, 38);
+}

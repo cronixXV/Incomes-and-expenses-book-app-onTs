@@ -1,0 +1,85 @@
+{
+  "logs": [],
+  "users": [
+    {
+      "id": "1725615335942",
+      "email": "admin1@admin1.ru",
+      "password": "$2a$10$pRGVi9uQp2yatqicP2o6WeyqWh9M4eLmSO6.TAroS.IY.RLKjnVZa",
+      "name": "admin1"
+    }
+  ],
+  "incomes_expenses": [
+    {
+      "title": "Тест 1234",
+      "description": "1234",
+      "amount": 100,
+      "type": 0,
+      "category": "electronics",
+      "date": "2023-05-03T12:03:07.272Z",
+      "id": 6
+    },
+    {
+      "title": "aaaaaa",
+      "description": "aaaaa",
+      "amount": "1001",
+      "type": "0",
+      "category": "electronics",
+      "date": "2024-09-04T11:39:38.225Z",
+      "id": 7
+    },
+    {
+      "title": "ффффф",
+      "description": "ффффффф",
+      "amount": 1001,
+      "type": "1",
+      "category": "electronics",
+      "date": "2024-09-04T11:56:16.004Z",
+      "id": 8
+    },
+    {
+      "title": "test2",
+      "description": "qqqqqqqq",
+      "amount": 1001,
+      "type": "1",
+      "category": "fun",
+      "date": "2024-09-05T11:21:51.069Z",
+      "id": 9
+    },
+    {
+      "title": "aaaaaa",
+      "description": "aaaaaa",
+      "amount": 10011,
+      "type": "1",
+      "category": "electronics",
+      "date": "2024-09-06T11:52:52.659Z",
+      "id": 10
+    },
+    {
+      "title": "ффффффф",
+      "description": "ффффффф",
+      "amount": 100,
+      "type": "0",
+      "category": "other",
+      "date": "2024-09-06T11:55:56.028Z",
+      "id": 11
+    },
+    {
+      "title": "ффффффф",
+      "description": "",
+      "amount": 100,
+      "type": "0",
+      "category": "other",
+      "date": "2024-09-06T11:56:06.284Z",
+      "id": 12
+    },
+    {
+      "title": "ффффффф",
+      "description": "ффффффф",
+      "amount": 100,
+      "type": "0",
+      "category": "electronics",
+      "date": "2024-09-06T11:56:27.137Z",
+      "id": 13
+    }
+  ]
+}

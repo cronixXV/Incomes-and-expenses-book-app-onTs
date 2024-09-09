@@ -1,0 +1,145 @@
+{
+  "app": {
+    "title": "My finances",
+    "logo": "Logo",
+    "menu": {
+      "main": "Home",
+      "incomes": "My incomes",
+      "expenses": "My expenses",
+      "create": "Add row",
+      "guest": "Guest",
+      "settings": "Settings",
+      "logout": "Logout",
+      "login": "Login",
+      "statistics": "Statistics",
+      "register": "Registration"
+    },
+    "footer": "Incomes and expenses book app"
+  },
+  "index": {
+    "title": "Book of accounting for incomes and expenses",
+    "description": "With this service, you can quickly create a book of income and expenses for personal finance. <br /> You no longer need to use expensive services and programs for such a simple task.",
+    "button": "Go to my incomes section",
+    "slider": {
+      "slideAlt": "Slide",
+      "slide1": {
+        "title": "Focus on your goals",
+        "text": "Focus on achieving financial freedom and the goals that really matter to you, rather than boring cost accounting and savings"
+      },
+      "slide2": {
+        "title": "Plan your budget",
+        "text": "All your incomes and expenses are always under your control"
+      },
+      "slide3": {
+        "title": "Consider your savings",
+        "text": "Achieve your financial goals with us"
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings"
+  },
+  "allChecks": {
+    "loadingData": "Loading data...",
+    "errorFetchingData": "Error fetching data",
+    "allChecks": "All Checks",
+    "category": "Category",
+    "amount": "Amount",
+    "details": "Details",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirmDeletion": "Confirm Deletion",
+    "confirmDeleteMessage": "Are you sure you want to delete this check?",
+    "cancel": "Cancel",
+    "editCheck": "Edit Check",
+    "title": "Title",
+    "description": "Description",
+    "saveChanges": "Save Changes",
+    "checkDetails": "Check Details",
+    "noDescription": "No description",
+    "food": "Food",
+    "electronics": "Electronics",
+    "fun": "Fun",
+    "other": "Other",
+    "close": "Close"
+  },
+  "createCheck": {
+    "createNewCheck": "Create New Check",
+    "title": "Title",
+    "amount": "Amount",
+    "enterAmount": "Enter amount",
+    "selectType": "Select record type",
+    "description": "Description",
+    "descriptionAvailableAfterTitle": "Description will be available for filling after entering the title",
+    "category": "Category",
+    "confirmCreateCheck": "Create a new check?",
+    "checkAdded": "Check added!",
+    "createCheck": "Create Check"
+  },
+  "error404": {
+    "pageNotFound": "Page not found"
+  },
+  "loginForm": {
+    "authFormTitle": "Authorization Form",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "invalidCredentials": "Invalid email and/or password",
+    "loginButton": "Login"
+  },
+  "registerForm": {
+    "registrationFormTitle": "Registration Form",
+    "usernamePlaceholder": "Username",
+    "emailPlaceholder": "Enter email",
+    "passwordPlaceholder": "Enter password",
+    "registerButton": "Register"
+  },
+  "statistics": {
+    "loadingData": "Loading data...",
+    "errorFetchingData": "Error fetching data: {error}",
+    "statisticsTitle": "Statistics",
+    "startDateLabel": "Start Date",
+    "endDateLabel": "End Date",
+    "applyButton": "Apply",
+    "noDataForPeriod": "No data for the selected period.",
+    "tableHeaders": {
+      "title": "Title",
+      "amount": "Amount",
+      "type": "Type",
+      "category": "Category",
+      "date": "Date"
+    }
+  },
+  "main": {
+    "loading": "Loading...",
+    "errorLoadingCheck": "Failed to load check for user. Please try again later"
+  },
+  "checkItem": {
+    "loadingData": "Loading data...",
+    "errorFetchingData": "Error fetching data: {error}",
+    "breadcrumbHome": "Home",
+    "breadcrumbAllChecks": "All Checks",
+    "tableHeaders": {
+      "title": "Title",
+      "value": "Value"
+    },
+    "id": "ID",
+    "amount": "Amount",
+    "operationType": "Operation Type",
+    "category": "Category",
+    "creationDate": "Creation Date",
+    "description": "Description"
+  },
+  "errorBoundary": {
+    "pageNotFound": "Page not found. Error 500. Please refresh the page."
+  },
+  "settingsLang": {
+    "title": "Settings",
+    "language": {
+      "english": "English",
+      "russian": "Russian"
+    },
+    "changeUsername": "Change Username",
+    "enterNewUsername": "Enter new username",
+    "save": "Save"
+  }
+}
