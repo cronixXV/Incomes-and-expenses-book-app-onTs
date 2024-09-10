@@ -7,7 +7,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:unicorn/recommended',
     'plugin:react/recommended',
-    'pligin: @typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
   globals: {

@@ -1,40 +1,37 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { Component } from 'react'
 import axios from 'axios'
 
-export default class ErrorBoundary extends Component {
+interface ErrorBoundaryProps {
+  children: React.ReactElement
+  fallback?: React.ReactElement
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean
+}
+
+export default class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   static defaultProps = {
     fallback: <div>Ошибка 500. Обновите страницу</div>,
   }
 
-  static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-    ]).isRequired,
-    fallback: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-    ]),
-  }
-
   url = `${process.env.REACT_APP_BASE_URL}/logs`
 
-  constructor(properties) {
+  constructor(properties: ErrorBoundaryProps) {
     super(properties)
     this.state = {
       hasError: false,
     }
   }
 
-  static getDerivedStateFromError(error) {
-    console.info(error)
+  static getDerivedStateFromError() {
     return { hasError: true }
   }
 
-  componentDidCatch(error, info) {
-    console.info(error, info)
-    // Fetch or axios, POST
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
     axios.get(`${this.url}?message=${error.message}`).then((result) => {
       if (result.data && result.data.length === 0) {
         axios.post(this.url, {

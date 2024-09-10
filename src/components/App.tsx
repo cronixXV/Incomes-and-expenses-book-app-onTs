@@ -1,8 +1,8 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../reducers/authSlice'
-import { ThemeContext } from '../helpers/ThemeContext'
+import { AppThemes, ThemeContext } from '../helpers/ThemeContext'
 import Error404 from './pages/Error404'
 import CheckItem from './CheckItem'
 import MainLayout from './layouts/MainLayout'
@@ -19,7 +19,7 @@ const Main = lazy(() => import('./pages/Main'))
 const AllChecks = lazy(() => import('./pages/AllChecks'))
 const Settings = lazy(() => import('./Settings'))
 
-const appThemes = ['light', 'dark']
+const appThemes = [AppThemes.Light, AppThemes.Dark]
 
 const router1 = createBrowserRouter([
   {
@@ -126,7 +126,7 @@ const router1 = createBrowserRouter([
 
 export default function App() {
   const dispatch = useDispatch()
-  const [theme, setTheme] = useState(appThemes[0])
+  const [theme, setTheme] = useState<AppThemes>(appThemes[0])
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
@@ -138,7 +138,7 @@ export default function App() {
     }
   }, [dispatch])
 
-  function changeTheme(theme) {
+  function changeTheme(theme: AppThemes) {
     if (appThemes.includes(theme)) {
       setTheme(theme)
     }
@@ -149,10 +149,15 @@ export default function App() {
     setTheme(index === 0 ? appThemes[1] : appThemes[0])
   }
 
+  const themeContextValue: ThemeContextValue = [
+    theme,
+    setTheme,
+    changeTheme,
+    changeThemeNext,
+  ]
+
   return (
-    <ThemeContext.Provider
-      value={[theme, setTheme, changeTheme, changeThemeNext]}
-    >
+    <ThemeContext.Provider value={themeContextValue}>
       <Suspense fallback={<span>Загрузка...</span>}>
         <RouterProvider router={router1} />
       </Suspense>

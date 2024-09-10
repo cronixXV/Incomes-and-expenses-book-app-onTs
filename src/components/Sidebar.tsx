@@ -1,11 +1,11 @@
-import React from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { RootState } from 'src/store'
 import { BsSpeedometer2 } from 'react-icons/bs'
 import { AiOutlineHome, AiOutlineMinusCircle } from 'react-icons/ai'
 import { BiAddToQueue } from 'react-icons/bi'
@@ -13,6 +13,11 @@ import { CgProfile } from 'react-icons/cg'
 import { IoStatsChartOutline } from 'react-icons/io5'
 import { FaRegIdCard } from 'react-icons/fa6'
 import styled from 'styled-components'
+
+interface User {
+  name?: string
+  email?: string
+}
 
 const Divider = styled.hr`
   color: white;
@@ -25,8 +30,12 @@ export default function Sidebar() {
     query: '(max-width: 768px)',
   })
 
-  const dispatch = useDispatch()
-  const { isAuthenticated, user } = useSelector((state) => state.auth)
+  const { isAuthenticated, user } = useSelector(
+    (state: RootState) => state.auth
+  ) as {
+    isAuthenticated: boolean
+    user: User | null
+  }
 
   const userDisplayName = isAuthenticated
     ? user?.name || user?.email || t('app.menu.guest')

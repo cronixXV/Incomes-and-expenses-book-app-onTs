@@ -28,7 +28,7 @@ module.exports = {
         extensions: ['ts', 'tsx', '.js', '.jsx'],
       }),
     ],
-    extensions: ['.js', '.jsx'],
+    extensions: ['ts', 'tsx', '.js', '.jsx'],
     // alias: {
     //   Components: path.resolve(__dirname, 'src/components/'),
     //   Helpers: path.resolve(__dirname, 'src/helpers/'),
