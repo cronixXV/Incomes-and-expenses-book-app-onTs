@@ -7,7 +7,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:unicorn/recommended',
     'plugin:react/recommended',
-    'pligin: @typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
   globals: {
@@ -42,5 +42,10 @@ module.exports = {
     'unicorn/no-null': 'off',
     'unicorn/consistent-function-scoping': 'off',
     'react/react-in-jsx-scope': 'off',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 }

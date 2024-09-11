@@ -1,8 +1,6 @@
 import { createRoot } from 'react-dom/client'
-
 import App from './components/App'
 import ErrorBoundary from './components/ErrorBoundary'
-
 import store from './store'
 import { Provider } from 'react-redux'
 import { initReactI18next } from 'react-i18next'

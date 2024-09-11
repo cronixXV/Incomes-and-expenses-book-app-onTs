@@ -5,7 +5,7 @@ export const CATEGORY_OPTIONS = [
   { value: 'other', label: 'Другое' },
 ]
 
-export function getCategoryLabel(category) {
+export function getCategoryLabel(category: string) {
   const item = CATEGORY_OPTIONS.find(
     (item) => item.value === category.toString()
   )
@@ -18,7 +18,7 @@ export const TYPE_OPTIONS = [
   { value: '1', label: 'Расходы' },
 ]
 
-export function getTypeLabel(type) {
+export function getTypeLabel(type: number) {
   const item = TYPE_OPTIONS.find((item) => item.value === type.toString())
 
   return item ? item.label : null

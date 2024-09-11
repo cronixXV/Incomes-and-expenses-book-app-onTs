@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateUserName } from '../reducers/authSlice'
 import { useTranslation } from 'react-i18next'
+import { RootState } from 'src/store'
+
+enum Language {
+  English = 'en',
+  Russian = 'ru',
+}
 
 export default function Settings() {
   const { t, i18n } = useTranslation()
   const dispatch = useDispatch()
-  const { user, isAuthenticated } = useSelector((state) => state.auth)
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth)
   const [newName, setNewName] = useState('')
 
-  const handleClick = (lang) => {
+  const handleClick = (lang: Language) => {
     i18n.changeLanguage(lang)
   }
 
@@ -24,15 +30,13 @@ export default function Settings() {
     <div>
       <h1 className="mb-5">{t('settingsLang.title')}</h1>
       <Button
-        onClick={() => handleClick('en')}
-        // variant="outline-primary"
+        onClick={() => handleClick(Language.English)}
         className="custom-btn-main"
       >
         {t('settingsLang.language.english')}
       </Button>{' '}
       <Button
-        onClick={() => handleClick('ru')}
-        // variant="outline-primary"
+        onClick={() => handleClick(Language.Russian)}
         className="custom-btn-main"
       >
         {t('settingsLang.language.russian')}
@@ -44,7 +48,7 @@ export default function Settings() {
             <Form.Control
               type="text"
               value={newName}
-              onChange={(e) => setNewName(e.target.value)}
+              onChange={(event) => setNewName(event.target.value)}
               placeholder={t('settingsLang.enterNewUsername')}
             />
           </Form.Group>

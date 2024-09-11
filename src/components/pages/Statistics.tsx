@@ -1,6 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, FormEvent, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchIncomesExpenses } from '../../reducers/incomesExpensesSlice'
+import {
+  fetchIncomesExpenses,
+  IncomesExpensesItem,
+} from '../../reducers/incomesExpensesSlice'
 import {
   Container,
   Form,
@@ -14,13 +17,18 @@ import {
 import moment from 'moment'
 import { getCategoryLabel, getTypeLabel } from '../constants/check'
 import { useTranslation } from 'react-i18next'
+import { RootState } from 'src/store'
+import { type UnknownAction, ThunkDispatch } from '@reduxjs/toolkit'
 
 export default function Statistics() {
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const dispatch = useDispatch()
-  const { data, loading, error } = useSelector((state) => state.incomesExpenses)
+  const [startDate, setStartDate] = useState<string>('')
+  const [endDate, setEndDate] = useState<string>('')
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+  const dispatch =
+    useDispatch<ThunkDispatch<RootState, undefined, UnknownAction>>()
+  const { data, loading, error } = useSelector(
+    (state: RootState) => state.incomesExpenses
+  )
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -37,7 +45,7 @@ export default function Statistics() {
     return []
   }, [data, startDate, endDate])
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsSubmitted(true)
   }
@@ -59,7 +67,7 @@ export default function Statistics() {
         </tr>
       </thead>
       <tbody>
-        {filteredData.map((item) => (
+        {filteredData.map((item: IncomesExpensesItem) => (
           <tr key={item.id}>
             <td>
               <Row>
@@ -123,7 +131,9 @@ export default function Statistics() {
           <Form.Control
             type="date"
             value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setStartDate(event.target.value)
+            }
             required
           />
         </Form.Group>
@@ -132,7 +142,9 @@ export default function Statistics() {
           <Form.Control
             type="date"
             value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setEndDate(event.target.value)
+            }
             required
           />
         </Form.Group>

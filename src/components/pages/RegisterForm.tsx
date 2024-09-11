@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { register } from '../../reducers/authSlice'
@@ -6,23 +6,30 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { Alert } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
+import { RootState, AppDispatch } from 'src/store'
 
 export default function RegisterForm() {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { error, status } = useSelector((state) => state.auth)
+  const dispatch = useDispatch<AppDispatch>()
+  const { error, status } = useSelector((state: RootState) => state.auth)
   const { t } = useTranslation()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [name, setName] = useState<string>('')
 
-  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState<boolean>(false)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     setFormSubmitted(true)
     dispatch(register({ email, password, name }))
   }
+
+  const handleChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value)
+    }
 
   useEffect(() => {
     if (formSubmitted) {
@@ -54,7 +61,7 @@ export default function RegisterForm() {
           placeholder={t('registerForm.usernamePlaceholder')}
           required
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={handleChange(setName)}
         />
       </Form.Group>
 
@@ -65,7 +72,7 @@ export default function RegisterForm() {
           placeholder={t('registerForm.emailPlaceholder')}
           required
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleChange(setEmail)}
         />
       </Form.Group>
 
@@ -76,7 +83,7 @@ export default function RegisterForm() {
           placeholder={t('registerForm.passwordPlaceholder')}
           required
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChange(setPassword)}
         />
       </Form.Group>
 

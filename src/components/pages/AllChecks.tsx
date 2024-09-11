@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchIncomesExpenses,
@@ -13,24 +13,45 @@ import {
   Modal,
   Form,
 } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import Spinner from 'react-bootstrap/Spinner'
 import { getCategoryLabel } from '../constants/check'
 import { useTranslation } from 'react-i18next'
+import { RootState } from '../../store'
+import { type UnknownAction, ThunkDispatch } from '@reduxjs/toolkit'
+
+interface EditFormData {
+  title: string
+  amount: number
+  description: string
+  category: string
+}
+
+interface IncomeExpenseItem {
+  id: number
+  title: string
+  amount: number
+  description?: string
+  category: string
+}
 
 export default function AllChecks() {
-  const dispatch = useDispatch()
-  const { data, loading, error } = useSelector((state) => state.incomesExpenses)
+  const dispatch =
+    useDispatch<ThunkDispatch<RootState, undefined, UnknownAction>>()
+  const { data, loading, error } = useSelector(
+    (state: RootState) => state.incomesExpenses
+  )
   const { t } = useTranslation()
 
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   const [showDetailModal, setShowDetailModal] = useState(false)
-  const [selectedItemId, setSelectedItemId] = useState(null)
-  const [selectedItem, setSelectedItem] = useState(null)
-  const [editFormData, setEditFormData] = useState({
+  const [selectedItemId, setSelectedItemId] = useState<number | null>(null)
+  const [selectedItem, setSelectedItem] = useState<IncomeExpenseItem | null>(
+    null
+  )
+  const [editFormData, setEditFormData] = useState<EditFormData>({
     title: '',
-    amount: '',
+    amount: 0,
     description: '',
     category: '',
   })
@@ -39,21 +60,23 @@ export default function AllChecks() {
     dispatch(fetchIncomesExpenses())
   }, [dispatch])
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: number) => {
     setSelectedItemId(id)
     setShowDeleteModal(true)
   }
 
   const confirmDelete = () => {
-    dispatch(deleteIncomesExpensesById(selectedItemId))
-    setShowDeleteModal(false)
+    if (selectedItemId !== null) {
+      dispatch(deleteIncomesExpensesById(selectedItemId))
+      setShowDeleteModal(false)
+    }
   }
 
   const cancelDelete = () => {
     setShowDeleteModal(false)
   }
 
-  const handleEdit = (item) => {
+  const handleEdit = (item: IncomeExpenseItem) => {
     setEditFormData({
       title: item.title,
       amount: item.amount,
@@ -64,8 +87,12 @@ export default function AllChecks() {
     setShowEditModal(true)
   }
 
-  const handleEditChange = (e) => {
-    const { name, value } = e.target
+  const handleEditChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = event.target
     setEditFormData({
       ...editFormData,
       [name]: value,
@@ -73,15 +100,17 @@ export default function AllChecks() {
   }
 
   const confirmEdit = () => {
-    dispatch(editIncomesExpensesById(selectedItemId, editFormData))
-    setShowEditModal(false)
+    if (selectedItemId !== null) {
+      dispatch(editIncomesExpensesById(selectedItemId, editFormData))
+      setShowEditModal(false)
+    }
   }
 
   const cancelEdit = () => {
     setShowEditModal(false)
   }
 
-  const handleDetails = (item) => {
+  const handleDetails = (item: IncomeExpenseItem) => {
     setSelectedItem(item)
     setShowDetailModal(true)
   }
@@ -116,7 +145,7 @@ export default function AllChecks() {
     <div>
       <h1>{t('allChecks.allChecks')}</h1>
       <CardGroup as="div">
-        {data.map((item) => (
+        {data.map((item: IncomeExpenseItem) => (
           <div
             key={item.id}
             className="p-3 col-sm-12 col-md-6 col-lg-4 col-xxl-3"
@@ -167,6 +196,7 @@ export default function AllChecks() {
         ))}
       </CardGroup>
 
+      {/* Modal Components */}
       <Modal
         show={showDeleteModal}
         onHide={cancelDelete}
@@ -179,14 +209,14 @@ export default function AllChecks() {
           <Button
             variant="secondary"
             onClick={cancelDelete}
-            size="md"
+            size="sm"
           >
             {t('allChecks.cancel')}
           </Button>
           <Button
             variant="danger"
             onClick={confirmDelete}
-            size="md"
+            size="sm"
           >
             {t('allChecks.delete')}
           </Button>
@@ -250,14 +280,14 @@ export default function AllChecks() {
           <Button
             variant="secondary"
             onClick={cancelEdit}
-            size="md"
+            size="sm"
           >
             {t('allChecks.cancel')}
           </Button>
           <Button
             variant="primary"
             onClick={confirmEdit}
-            size="md"
+            size="sm"
           >
             {t('allChecks.saveChanges')}
           </Button>

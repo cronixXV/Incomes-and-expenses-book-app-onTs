@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, FocusEvent, ChangeEvent } from 'react'
 
 export default function useInput(
   defaultValue = '',
@@ -6,16 +6,19 @@ export default function useInput(
   required = false
 ) {
   const [value, setValue] = useState(defaultValue)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
-  const onChange = useCallback((event) => setValue(event.target.value), [])
+  const onChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => setValue(event.target.value),
+    []
+  )
 
   return {
     id: name,
     name,
     value,
     error,
-    onBlur: (event) => {
+    onBlur: (event: FocusEvent<HTMLInputElement>) => {
       setError(
         !event.target.value && required
           ? 'Поле обязательно для заполнения'

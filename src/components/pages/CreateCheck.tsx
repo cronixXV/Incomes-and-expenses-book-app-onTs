@@ -1,14 +1,20 @@
-import React, { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Form as RouterForm, useActionData } from 'react-router-dom'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import Alert from 'react-bootstrap/Alert'
+import Modal from 'react-bootstrap/Modal'
 import { BiAddToQueue } from 'react-icons/bi'
 import { TYPE_OPTIONS, CATEGORY_OPTIONS } from '../constants/check'
 import useInput from 'Hooks/useInput'
 import InputField from '../InputField'
 import { useTranslation } from 'react-i18next'
+import { IncomesExpensesItem } from '../../reducers/incomesExpensesSlice'
+
+interface CreateCheckFormData extends IncomesExpensesItem {
+  isOk?: boolean
+  error?: string
+}
 
 export default function CreateCheck() {
   const { t } = useTranslation()
@@ -17,8 +23,10 @@ export default function CreateCheck() {
   const [type, setType] = useState(TYPE_OPTIONS[0].value)
   const [description, setDescription] = useState('')
   const [category, setCategory] = useState(CATEGORY_OPTIONS[3].value)
+  const [showModal, setShowModal] = useState(false)
+  const [modalMessage, setModalMessage] = useState('')
 
-  const data = useActionData()
+  const data = useActionData() as CreateCheckFormData
 
   const amountText = useMemo(
     () => (
@@ -26,12 +34,19 @@ export default function CreateCheck() {
         {t('createCheck.enterAmount')}
       </Form.Text>
     ),
-    []
+    [t]
   )
 
-  if (data && data.isOk) {
-    return <div>{t('createCheck.checkAdded')}</div>
-  }
+  useEffect(() => {
+    if (data) {
+      if (data.isOk) {
+        setModalMessage(t('createCheck.checkAdded'))
+      } else if (data.error) {
+        setModalMessage(data.error)
+      }
+      setShowModal(true)
+    }
+  }, [data, t])
 
   return (
     <div>
@@ -40,11 +55,6 @@ export default function CreateCheck() {
         as={RouterForm}
         action="/create"
         method="post"
-        onSubmit={(event) => {
-          if (!confirm(t('createCheck.confirmCreateCheck'))) {
-            event.preventDefault()
-          }
-        }}
       >
         <InputField
           id="title"
@@ -74,7 +84,9 @@ export default function CreateCheck() {
                 id={`type-radio-${option.value}`}
                 value={option.value}
                 label={option.label}
-                onChange={(event) => setType(event.target.value)}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  setType(event.target.value)
+                }
                 checked={type === option.value}
               />
             ))}
@@ -89,7 +101,7 @@ export default function CreateCheck() {
             value={description}
             disabled={title.value.length === 0}
             rows={5}
-            onChange={(event) => {
+            onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
               setDescription(event.target.value)
             }}
           />
@@ -105,7 +117,7 @@ export default function CreateCheck() {
             id="category"
             name="category"
             value={category}
-            onChange={(event) => {
+            onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
               setCategory(event.target.value)
             }}
           >
@@ -119,9 +131,6 @@ export default function CreateCheck() {
             ))}
           </Form.Select>
         </Form.Group>
-        <div>
-          {data && data.error && <Alert variant="danger">{data.error}</Alert>}
-        </div>
         <Button
           type="submit"
           className="custom-add-btn"
@@ -133,11 +142,29 @@ export default function CreateCheck() {
           {t('createCheck.createCheck')}
         </Button>
       </Form>
+
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>{t('createCheck.notification')}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => setShowModal(false)}
+          >
+            {t('createCheck.close')}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   )
 }
 
-export const createCheckAction = async ({ request }) => {
+export const createCheckAction = async ({ request }: { request: Request }) => {
   const data = await request.formData()
 
   const result = {
@@ -177,7 +204,7 @@ export const createCheckAction = async ({ request }) => {
       date: new Date(),
     })
     return { isOk: true }
-  } catch (error) {
+  } catch {
     return { error: 'Ошибка при создании чека' }
   }
 }

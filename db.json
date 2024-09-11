@@ -6,18 +6,15 @@
       "email": "admin1@admin1.ru",
       "password": "$2a$10$pRGVi9uQp2yatqicP2o6WeyqWh9M4eLmSO6.TAroS.IY.RLKjnVZa",
       "name": "admin1"
+    },
+    {
+      "id": "1726051463434",
+      "email": "test2@mail.ru",
+      "password": "$2a$10$xobeLM7iFFfe3vPcaD6.aOyxRZBW1THLwengM9D3pyse0kirvLs7y",
+      "name": "test2"
     }
   ],
   "incomes_expenses": [
-    {
-      "title": "Тест 1234",
-      "description": "1234",
-      "amount": 100,
-      "type": 0,
-      "category": "electronics",
-      "date": "2023-05-03T12:03:07.272Z",
-      "id": 6
-    },
     {
       "title": "aaaaaa",
       "description": "aaaaa",
@@ -80,6 +77,15 @@
       "category": "electronics",
       "date": "2024-09-06T11:56:27.137Z",
       "id": 13
+    },
+    {
+      "title": "test1",
+      "description": "testtest1",
+      "amount": 1001,
+      "type": "1",
+      "category": "electronics",
+      "date": "2024-09-11T10:44:09.747Z",
+      "id": 14
     }
   ]
 }

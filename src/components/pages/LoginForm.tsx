@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { login } from '../../reducers/authSlice'
@@ -6,25 +6,33 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { Alert } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
+import { AppDispatch, RootState } from '../../store'
+
+interface LoginPayload {
+  email: string
+  password: string
+}
 
 export default function LoginForm() {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { status, error, isAuthenticated } = useSelector((state) => state.auth)
+  const dispatch = useDispatch<AppDispatch>()
+  const { status, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  )
   const { t } = useTranslation()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [localError, setLocalError] = useState('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [localError, setLocalError] = useState<string>('')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    dispatch(login({ email, password }))
+    dispatch(login({ email, password } as LoginPayload))
       .unwrap()
       .then(() => {
         navigate('/')
       })
-      .catch((error) => {
+      .catch(() => {
         setLocalError('Неверный email и/или пароль')
         setPassword('')
       })
