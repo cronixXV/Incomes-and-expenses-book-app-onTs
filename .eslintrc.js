@@ -30,8 +30,6 @@ module.exports = {
     'prefer-arrow-callback': 'off',
     'no-console': [
       'error',
-      // 'group',
-      // 'groupEnd',
       {
         allow: ['info', 'error'],
       },
@@ -44,5 +42,10 @@ module.exports = {
     'unicorn/no-null': 'off',
     'unicorn/consistent-function-scoping': 'off',
     'react/react-in-jsx-scope': 'off',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 }
