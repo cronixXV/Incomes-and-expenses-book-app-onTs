@@ -1,7 +1,9 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { login } from '../reducers/authSlice'
+import { ThunkDispatch } from 'redux-thunk'
+import { RootState } from '../store'
+import { login, AppActions } from '../reducers/authSlice'
 import { AppThemes, ThemeContext } from '../helpers/ThemeContext'
 import Error404 from './pages/Error404'
 import CheckItem from './CheckItem'
@@ -14,6 +16,8 @@ import Logout from './pages/Logout'
 import Statistics from './pages/Statistics'
 import PrivateRoute from './PrivateRoute'
 import RegisterForm from './pages/RegisterForm'
+
+type AppDispatch = ThunkDispatch<RootState, undefined, AppActions>
 
 const Main = lazy(() => import('./pages/Main'))
 const AllChecks = lazy(() => import('./pages/AllChecks'))
@@ -125,7 +129,7 @@ const router1 = createBrowserRouter([
 ])
 
 export default function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const [theme, setTheme] = useState<AppThemes>(appThemes[0])
 
   useEffect(() => {
@@ -134,7 +138,7 @@ export default function App() {
     const user = localStorage.getItem('user')
 
     if (isAuthenticated && token && user) {
-      dispatch(login({ token, user: JSON.parse(user) }))
+      dispatch(login({ email: 'example@example.com', password: 'password' }))
     }
   }, [dispatch])
 

@@ -1,8 +1,7 @@
-import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import Sidebar from '../Sidebar.tsx'
+import Sidebar from '../Sidebar'
 
 export default function MainLayout() {
   const { t } = useTranslation()

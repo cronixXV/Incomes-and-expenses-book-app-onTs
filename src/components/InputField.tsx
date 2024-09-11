@@ -1,6 +1,14 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import PropTypes from 'prop-types'
+
+interface InputFieldProps {
+  id: string
+  title: string
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  value?: string | number
+  type?: string
+  children?: React.ReactElement
+}
 
 function InputField({
   id,
@@ -9,7 +17,7 @@ function InputField({
   value = '',
   type = 'text',
   children,
-}) {
+}: InputFieldProps) {
   return (
     <Form.Group className="mb-3">
       <Form.Control
@@ -24,18 +32,6 @@ function InputField({
       {children}
     </Form.Group>
   )
-}
-
-InputField.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  type: PropTypes.string.isRequired,
 }
 
 export default React.memo(InputField)

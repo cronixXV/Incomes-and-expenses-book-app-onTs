@@ -2,11 +2,12 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../reducers/authSlice'
+import { RootState } from '../../store'
 
 export default function Logout() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { isAuthenticated } = useSelector((state) => state.auth)
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth)
 
   console.log('isAuthenticated value:', isAuthenticated)
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchIncomesExpensesById } from '../reducers/incomesExpensesSlice'
@@ -8,15 +8,18 @@ import Table from 'react-bootstrap/Table'
 import moment from 'moment'
 import { getCategoryLabel, getTypeLabel } from './constants/check'
 import { useTranslation } from 'react-i18next'
+import { RootState } from '../store'
+import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit'
 
 export default function CheckItem() {
-  let { itemId } = useParams()
-  itemId = Number(itemId)
+  const { itemId } = useParams<{ itemId: string }>()
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<ThunkDispatch<RootState, undefined, AnyAction>>()
   const { t } = useTranslation()
-  const { data, loading, error } = useSelector((state) => {
-    const item = state.incomesExpenses.data.find((item) => item.id === itemId)
+  const { data, loading, error } = useSelector((state: RootState) => {
+    const item = state.incomesExpenses.data.find(
+      (item) => item.id === Number(itemId)
+    )
     return {
       data: item,
       loading: state.incomesExpenses.loading,
@@ -25,7 +28,7 @@ export default function CheckItem() {
   })
 
   useEffect(() => {
-    dispatch(fetchIncomesExpensesById(itemId))
+    dispatch(fetchIncomesExpensesById(Number(itemId)))
   }, [dispatch, itemId])
 
   if (loading || !data) {
@@ -83,7 +86,7 @@ export default function CheckItem() {
             <td>{moment(data.date).format('DD.MM.YYYY')}</td>
           </tr>
           <tr>
-            <td colSpan="2">
+            <td colSpan={2}>
               <h5>{t('checkItem.description')}</h5>
               <p>{data.description}</p>
             </td>

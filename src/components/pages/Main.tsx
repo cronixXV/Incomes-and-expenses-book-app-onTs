@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Button, Carousel } from 'react-bootstrap'
 import { BsSpeedometer2 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
@@ -20,7 +19,7 @@ export default function Main() {
         <h1 className="display-5 fw-bold">{t('index.title')}</h1>
         <p
           className="fs-4 mb-4"
-          dangerouslySetInnerHTML={{ __html: t('index.description') }}
+          dangerouslySetInnerHTML={{ __html: t('index.description') || '' }}
         />
         <Link to="/incomes">
           <Button

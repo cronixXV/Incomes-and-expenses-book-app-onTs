@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { Form as RouterForm, useActionData } from 'react-router-dom'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
@@ -9,6 +9,12 @@ import { TYPE_OPTIONS, CATEGORY_OPTIONS } from '../constants/check'
 import useInput from 'Hooks/useInput'
 import InputField from '../InputField'
 import { useTranslation } from 'react-i18next'
+import { IncomesExpensesItem } from '../../reducers/incomesExpensesSlice'
+
+interface CreateCheckFormData extends IncomesExpensesItem {
+  isOk?: boolean
+  error?: string
+}
 
 export default function CreateCheck() {
   const { t } = useTranslation()
@@ -18,7 +24,7 @@ export default function CreateCheck() {
   const [description, setDescription] = useState('')
   const [category, setCategory] = useState(CATEGORY_OPTIONS[3].value)
 
-  const data = useActionData()
+  const data = useActionData() as CreateCheckFormData
 
   const amountText = useMemo(
     () => (
@@ -40,7 +46,7 @@ export default function CreateCheck() {
         as={RouterForm}
         action="/create"
         method="post"
-        onSubmit={(event) => {
+        onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
           if (!confirm(t('createCheck.confirmCreateCheck'))) {
             event.preventDefault()
           }
@@ -74,7 +80,9 @@ export default function CreateCheck() {
                 id={`type-radio-${option.value}`}
                 value={option.value}
                 label={option.label}
-                onChange={(event) => setType(event.target.value)}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  setType(event.target.value)
+                }
                 checked={type === option.value}
               />
             ))}
@@ -89,7 +97,7 @@ export default function CreateCheck() {
             value={description}
             disabled={title.value.length === 0}
             rows={5}
-            onChange={(event) => {
+            onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
               setDescription(event.target.value)
             }}
           />
@@ -105,7 +113,7 @@ export default function CreateCheck() {
             id="category"
             name="category"
             value={category}
-            onChange={(event) => {
+            onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
               setCategory(event.target.value)
             }}
           >
@@ -137,7 +145,7 @@ export default function CreateCheck() {
   )
 }
 
-export const createCheckAction = async ({ request }) => {
+export const createCheckAction = async ({ request }: { request: Request }) => {
   const data = await request.formData()
 
   const result = {
