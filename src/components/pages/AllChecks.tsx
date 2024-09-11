@@ -17,7 +17,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import { getCategoryLabel } from '../constants/check'
 import { useTranslation } from 'react-i18next'
 import { RootState } from '../../store'
-import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit'
+import { type UnknownAction, ThunkDispatch } from '@reduxjs/toolkit'
 
 interface EditFormData {
   title: string
@@ -35,7 +35,8 @@ interface IncomeExpenseItem {
 }
 
 export default function AllChecks() {
-  const dispatch = useDispatch<ThunkDispatch<RootState, undefined, AnyAction>>()
+  const dispatch =
+    useDispatch<ThunkDispatch<RootState, undefined, UnknownAction>>()
   const { data, loading, error } = useSelector(
     (state: RootState) => state.incomesExpenses
   )

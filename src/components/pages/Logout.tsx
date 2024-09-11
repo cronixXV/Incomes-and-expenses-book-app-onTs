@@ -9,15 +9,10 @@ export default function Logout() {
   const dispatch = useDispatch()
   const { isAuthenticated } = useSelector((state: RootState) => state.auth)
 
-  console.info('isAuthenticated value:', isAuthenticated)
-
   useEffect(() => {
-    console.info('Logout component mounted')
     if (isAuthenticated) {
-      console.info('Dispatching logout...')
       dispatch(logout())
     } else {
-      console.info('User not authenticated, redirecting...')
       navigate('/auth')
     }
   }, [dispatch, isAuthenticated, navigate])

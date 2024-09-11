@@ -1,5 +1,5 @@
 import {
-  AnyAction,
+  UnknownAction,
   createSlice,
   PayloadAction,
   ThunkAction,
@@ -70,7 +70,6 @@ export const {
 
 export default incomesExpensesSlice.reducer
 
-// Action для получения всех записей
 export const fetchIncomesExpenses = () => async (dispatch: AppDispatch) => {
   dispatch(fetchDataStart())
   try {
@@ -84,9 +83,8 @@ export const fetchIncomesExpenses = () => async (dispatch: AppDispatch) => {
   }
 }
 
-// Action для получения записи по ID
 export const fetchIncomesExpensesById =
-  (id: number): ThunkAction<void, RootState, undefined, AnyAction> =>
+  (id: number): ThunkAction<void, RootState, undefined, UnknownAction> =>
   async (dispatch: AppDispatch, getState: () => RootState) => {
     const { data } = getState().incomesExpenses
     const item = data.find((item) => item.id === id)
@@ -107,9 +105,8 @@ export const fetchIncomesExpensesById =
     }
   }
 
-// Action для удаления записи
 export const deleteIncomesExpensesById =
-  (id: number): ThunkAction<void, RootState, undefined, AnyAction> =>
+  (id: number): ThunkAction<void, RootState, undefined, UnknownAction> =>
   async (dispatch: AppDispatch) => {
     try {
       const response = await fetch(
@@ -129,12 +126,11 @@ export const deleteIncomesExpensesById =
     }
   }
 
-// Action для обновления записи
 export const editIncomesExpensesById =
   (
     id: number,
     editedData: Partial<IncomesExpensesItem>
-  ): ThunkAction<void, RootState, undefined, AnyAction> =>
+  ): ThunkAction<void, RootState, undefined, UnknownAction> =>
   async (dispatch: AppDispatch) => {
     try {
       const response = await fetch(

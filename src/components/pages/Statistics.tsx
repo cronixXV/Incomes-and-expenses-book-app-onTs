@@ -18,13 +18,14 @@ import moment from 'moment'
 import { getCategoryLabel, getTypeLabel } from '../constants/check'
 import { useTranslation } from 'react-i18next'
 import { RootState } from 'src/store'
-import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit'
+import { type UnknownAction, ThunkDispatch } from '@reduxjs/toolkit'
 
 export default function Statistics() {
   const [startDate, setStartDate] = useState<string>('')
   const [endDate, setEndDate] = useState<string>('')
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
-  const dispatch = useDispatch<ThunkDispatch<RootState, undefined, AnyAction>>()
+  const dispatch =
+    useDispatch<ThunkDispatch<RootState, undefined, UnknownAction>>()
   const { data, loading, error } = useSelector(
     (state: RootState) => state.incomesExpenses
   )

@@ -9,12 +9,13 @@ import moment from 'moment'
 import { getCategoryLabel, getTypeLabel } from './constants/check'
 import { useTranslation } from 'react-i18next'
 import { RootState } from '../store'
-import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit'
+import { type UnknownAction, ThunkDispatch } from '@reduxjs/toolkit'
 
 export default function CheckItem() {
   const { itemId } = useParams<{ itemId: string }>()
 
-  const dispatch = useDispatch<ThunkDispatch<RootState, undefined, AnyAction>>()
+  const dispatch =
+    useDispatch<ThunkDispatch<RootState, undefined, UnknownAction>>()
   const { t } = useTranslation()
   const { data, loading, error } = useSelector((state: RootState) => {
     const item = state.incomesExpenses.data.find(
