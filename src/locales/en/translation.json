@@ -74,7 +74,9 @@
     "category": "Category",
     "confirmCreateCheck": "Create a new check?",
     "checkAdded": "Check added!",
-    "createCheck": "Create Check"
+    "createCheck": "Create Check",
+    "close": "Close",
+    "notification": "Notification"
   },
   "error404": {
     "pageNotFound": "Page not found"

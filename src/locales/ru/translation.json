@@ -74,7 +74,9 @@
     "category": "Категория",
     "confirmCreateCheck": "Создать новый чек?",
     "checkAdded": "Чек добавлен!",
-    "createCheck": "Создать чек"
+    "createCheck": "Создать чек",
+    "close": "Закрыть",
+    "notification": "Уведомление"
   },
   "error404": {
     "pageNotFound": "Страница не найдена"
