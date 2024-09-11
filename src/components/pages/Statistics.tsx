@@ -130,8 +130,8 @@ export default function Statistics() {
           <Form.Control
             type="date"
             value={startDate}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setStartDate(e.target.value)
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setStartDate(event.target.value)
             }
             required
           />
@@ -141,8 +141,8 @@ export default function Statistics() {
           <Form.Control
             type="date"
             value={endDate}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setEndDate(e.target.value)
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setEndDate(event.target.value)
             }
             required
           />

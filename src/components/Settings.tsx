@@ -48,7 +48,7 @@ export default function Settings() {
             <Form.Control
               type="text"
               value={newName}
-              onChange={(e) => setNewName(e.target.value)}
+              onChange={(event) => setNewName(event.target.value)}
               placeholder={t('settingsLang.enterNewUsername')}
             />
           </Form.Group>

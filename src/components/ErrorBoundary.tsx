@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Component } from 'react'
 import axios from 'axios'
 
-interface ErrorBoundaryProps {
+interface ErrorBoundaryProperties {
   children: React.ReactElement
   fallback?: React.ReactElement
 }
@@ -11,7 +12,7 @@ interface ErrorBoundaryState {
 }
 
 export default class ErrorBoundary extends Component<
-  ErrorBoundaryProps,
+  ErrorBoundaryProperties,
   ErrorBoundaryState
 > {
   static defaultProps = {
@@ -20,7 +21,7 @@ export default class ErrorBoundary extends Component<
 
   url = `${process.env.REACT_APP_BASE_URL}/logs`
 
-  constructor(properties: ErrorBoundaryProps) {
+  constructor(properties: ErrorBoundaryProperties) {
     super(properties)
     this.state = {
       hasError: false,

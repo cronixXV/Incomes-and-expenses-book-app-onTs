@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 
-interface InputFieldProps {
+interface InputFieldProperties {
   id: string
   title: string
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -17,7 +17,7 @@ function InputField({
   value = '',
   type = 'text',
   children,
-}: InputFieldProps) {
+}: InputFieldProperties) {
   return (
     <Form.Group className="mb-3">
       <Form.Control

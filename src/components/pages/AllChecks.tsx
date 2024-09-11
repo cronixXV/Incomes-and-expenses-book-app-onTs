@@ -87,11 +87,11 @@ export default function AllChecks() {
   }
 
   const handleEditChange = (
-    e: React.ChangeEvent<
+    event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
-    const { name, value } = e.target
+    const { name, value } = event.target
     setEditFormData({
       ...editFormData,
       [name]: value,

@@ -30,6 +30,8 @@ module.exports = {
     'prefer-arrow-callback': 'off',
     'no-console': [
       'error',
+      // 'group',
+      // 'groupEnd',
       {
         allow: ['info', 'error'],
       },

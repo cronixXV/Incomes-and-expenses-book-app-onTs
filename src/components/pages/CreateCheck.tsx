@@ -204,7 +204,7 @@ export const createCheckAction = async ({ request }: { request: Request }) => {
       date: new Date(),
     })
     return { isOk: true }
-  } catch (error) {
+  } catch {
     return { error: 'Ошибка при создании чека' }
   }
 }

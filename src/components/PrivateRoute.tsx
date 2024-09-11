@@ -1,10 +1,10 @@
 import { Navigate } from 'react-router-dom'
 
-interface PrivateRouteProps {
+interface PrivateRouteProperties {
   children: React.ReactElement
   authUrl?: string
 }
-function PrivateRoute({ children, authUrl = '/auth' }: PrivateRouteProps) {
+function PrivateRoute({ children, authUrl = '/auth' }: PrivateRouteProperties) {
   const isAuthenticated = !!localStorage.getItem('isAuthenticated')
 
   if (isAuthenticated) {

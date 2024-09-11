@@ -14,7 +14,7 @@ import { IoStatsChartOutline } from 'react-icons/io5'
 import { FaRegIdCard } from 'react-icons/fa6'
 import styled from 'styled-components'
 
-interface User {
+export interface User {
   name?: string
   email?: string
 }

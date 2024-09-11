@@ -19,16 +19,16 @@ export default function RegisterForm() {
 
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false)
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     setFormSubmitted(true)
     dispatch(register({ email, password, name }))
   }
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setter(e.target.value)
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value)
     }
 
   useEffect(() => {

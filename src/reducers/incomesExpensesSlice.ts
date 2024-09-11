@@ -41,11 +41,9 @@ const incomesExpensesSlice = createSlice({
       action: PayloadAction<IncomesExpensesItem | IncomesExpensesItem[]>
     ) {
       state.loading = false
-      if (Array.isArray(action.payload)) {
-        state.data = action.payload
-      } else {
-        state.data = [...state.data, action.payload]
-      }
+      state.data = Array.isArray(action.payload)
+        ? action.payload
+        : [...state.data, action.payload]
     },
     fetchDataFail(state, action: PayloadAction<string>) {
       state.loading = false
